@@ -1,0 +1,16 @@
+﻿@{
+    var CurrentUser = Common.HttpContextHelper.GetSession<Model.User>("User");
+    if (CurrentUser == null)
+    {
+        <input type="button" class="btn btn-small btn-primary" value="登录" onclick="LoginView();" />
+    }
+    else
+    {
+         <text> Hello @CurrentUser.UserName  </text>
+        <input type="button" class="btn btn-small" value="注销" onclick="SignOff();" />
+        
+    }
+    
+}
+
+

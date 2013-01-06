@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08365628ca2c402196c8854e4a5b931b" Name="Diagram1">
+        <EntityTypeShape EntityType="HeylonBlogModel.ArticleCategory" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.ArticleReply" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.Article" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.ArticleTag" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.Category" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.Section" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.Tag" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeylonBlogModel.User" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleCategory_Articles" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleReply_ArticleReply1" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleReply_Articles" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleReply_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_Articles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleTag_Articles" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleTag_Tags" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="HeylonBlogModel.FK_ArticleReply_ArticleReply11" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

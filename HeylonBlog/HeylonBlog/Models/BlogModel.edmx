@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HeylonBlogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HeylonBlogModelStoreContainer">
+          <EntitySet Name="ArticleCategory" EntityType="HeylonBlogModel.Store.ArticleCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ArticleReply" EntityType="HeylonBlogModel.Store.ArticleReply" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Articles" EntityType="HeylonBlogModel.Store.Articles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ArticleTag" EntityType="HeylonBlogModel.Store.ArticleTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="HeylonBlogModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sections" EntityType="HeylonBlogModel.Store.Sections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="HeylonBlogModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="HeylonBlogModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ArticleCategory_Articles" Association="HeylonBlogModel.Store.FK_ArticleCategory_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleCategory" EntitySet="ArticleCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleCategory_Category" Association="HeylonBlogModel.Store.FK_ArticleCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ArticleCategory" EntitySet="ArticleCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_ArticleReply1" Association="HeylonBlogModel.Store.FK_ArticleReply_ArticleReply1">
+            <End Role="ArticleReply" EntitySet="ArticleReply" />
+            <End Role="ArticleReply1" EntitySet="ArticleReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_Articles" Association="HeylonBlogModel.Store.FK_ArticleReply_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleReply" EntitySet="ArticleReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_Users" Association="HeylonBlogModel.Store.FK_Articles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleTag_Articles" Association="HeylonBlogModel.Store.FK_ArticleTag_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleTag" EntitySet="ArticleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleTag_Tags" Association="HeylonBlogModel.Store.FK_ArticleTag_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ArticleTag" EntitySet="ArticleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Category" Association="HeylonBlogModel.Store.FK_Category_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ArticleCategory">
+          <Key>
+            <PropertyRef Name="ArticleCateGoryID" />
+          </Key>
+          <Property Name="ArticleCateGoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArticleReply">
+          <Key>
+            <PropertyRef Name="ArticleReplyID" />
+          </Key>
+          <Property Name="ArticleReplyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReplyContent" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="ReplyUserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ReplyUserEmail" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="ReplyTime" Type="datetime" Nullable="false" />
+          <Property Name="ArticleID" Type="int" Nullable="false" />
+          <Property Name="ToReplyID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleTitle" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="ArticleContent" Type="text" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="SortID" Type="int" Nullable="false" />
+          <Property Name="IsTop" Type="int" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="ReadNum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArticleTag">
+          <Key>
+            <PropertyRef Name="ArticleTagID" />
+          </Key>
+          <Property Name="ArticleTagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryTitle" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CategoryDesc" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Active" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SectionTitle" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="SectionContent" Type="nvarchar" Nullable="false" />
+          <Property Name="SortID" Type="int" Nullable="false" />
+          <Property Name="SectionCode" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagTitle" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Active" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LoginName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ArticleCategory_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Store.Articles" Multiplicity="1" />
+          <End Role="ArticleCategory" Type="HeylonBlogModel.Store.ArticleCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleCategory">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleCategory_Category">
+          <End Role="Category" Type="HeylonBlogModel.Store.Category" Multiplicity="1" />
+          <End Role="ArticleCategory" Type="HeylonBlogModel.Store.ArticleCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ArticleCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_ArticleReply1">
+          <End Role="ArticleReply" Type="HeylonBlogModel.Store.ArticleReply" Multiplicity="1" />
+          <End Role="ArticleReply1" Type="HeylonBlogModel.Store.ArticleReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleReply">
+              <PropertyRef Name="ArticleReplyID" />
+            </Principal>
+            <Dependent Role="ArticleReply1">
+              <PropertyRef Name="ToReplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Store.Articles" Multiplicity="1" />
+          <End Role="ArticleReply" Type="HeylonBlogModel.Store.ArticleReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleReply">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articles_Users">
+          <End Role="Users" Type="HeylonBlogModel.Store.Users" Multiplicity="1" />
+          <End Role="Articles" Type="HeylonBlogModel.Store.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleTag_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Store.Articles" Multiplicity="1" />
+          <End Role="ArticleTag" Type="HeylonBlogModel.Store.ArticleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleTag">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleTag_Tags">
+          <End Role="Tags" Type="HeylonBlogModel.Store.Tags" Multiplicity="1" />
+          <End Role="ArticleTag" Type="HeylonBlogModel.Store.ArticleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="ArticleTag">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Category">
+          <End Role="Category" Type="HeylonBlogModel.Store.Category" Multiplicity="1" />
+          <End Role="Category1" Type="HeylonBlogModel.Store.Category" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HeylonBlogModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HeylonBlogEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ArticleCategories" EntityType="HeylonBlogModel.ArticleCategory" />
+          <EntitySet Name="ArticleReplies" EntityType="HeylonBlogModel.ArticleReply" />
+          <EntitySet Name="Articles" EntityType="HeylonBlogModel.Article" />
+          <EntitySet Name="ArticleTags" EntityType="HeylonBlogModel.ArticleTag" />
+          <EntitySet Name="Categories" EntityType="HeylonBlogModel.Category" />
+          <EntitySet Name="Sections" EntityType="HeylonBlogModel.Section" />
+          <EntitySet Name="Tags" EntityType="HeylonBlogModel.Tag" />
+          <EntitySet Name="Users" EntityType="HeylonBlogModel.User" />
+          <AssociationSet Name="FK_ArticleCategory_Articles" Association="HeylonBlogModel.FK_ArticleCategory_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleCategory_Category" Association="HeylonBlogModel.FK_ArticleCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_ArticleReply1" Association="HeylonBlogModel.FK_ArticleReply_ArticleReply1">
+            <End Role="ArticleReply" EntitySet="ArticleReplies" />
+            <End Role="ArticleReply1" EntitySet="ArticleReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_Articles" Association="HeylonBlogModel.FK_ArticleReply_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleReply" EntitySet="ArticleReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_Users" Association="HeylonBlogModel.FK_ArticleReply_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ArticleReply" EntitySet="ArticleReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_Users" Association="HeylonBlogModel.FK_Articles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleTag_Articles" Association="HeylonBlogModel.FK_ArticleTag_Articles">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleTag" EntitySet="ArticleTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleTag_Tags" Association="HeylonBlogModel.FK_ArticleTag_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ArticleTag" EntitySet="ArticleTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Category" Association="HeylonBlogModel.FK_Category_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleReply_ArticleReply11" Association="HeylonBlogModel.FK_ArticleReply_ArticleReply11">
+            <End Role="ArticleReply" EntitySet="ArticleReplies" />
+            <End Role="ArticleReply1" EntitySet="ArticleReplies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ArticleCategory">
+          <Key>
+            <PropertyRef Name="ArticleCateGoryID" />
+          </Key>
+          <Property Name="ArticleCateGoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="HeylonBlogModel.FK_ArticleCategory_Articles" FromRole="ArticleCategory" ToRole="Articles" />
+          <NavigationProperty Name="Category" Relationship="HeylonBlogModel.FK_ArticleCategory_Category" FromRole="ArticleCategory" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="ArticleReply">
+          <Key>
+            <PropertyRef Name="ArticleReplyID" />
+          </Key>
+          <Property Name="ArticleReplyID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ReplyContent" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ReplyUserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ReplyUserEmail" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ReplyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" />
+          <Property Name="ToReplyID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="HeylonBlogModel.FK_ArticleReply_Articles" FromRole="ArticleReply" ToRole="Articles" />
+          <NavigationProperty Name="User" Relationship="HeylonBlogModel.FK_ArticleReply_Users" FromRole="ArticleReply" ToRole="Users" />
+          <NavigationProperty Name="ArticleReply11" Relationship="HeylonBlogModel.FK_ArticleReply_ArticleReply11" FromRole="ArticleReply" ToRole="ArticleReply1" />
+          <NavigationProperty Name="ToReply" Relationship="HeylonBlogModel.FK_ArticleReply_ArticleReply11" FromRole="ArticleReply1" ToRole="ArticleReply" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleTitle" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ArticleContent" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SortID" Type="Int32" Nullable="false" />
+          <Property Name="IsTop" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="ReadNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArticleCategories" Relationship="HeylonBlogModel.FK_ArticleCategory_Articles" FromRole="Articles" ToRole="ArticleCategory" />
+          <NavigationProperty Name="ArticleReplies" Relationship="HeylonBlogModel.FK_ArticleReply_Articles" FromRole="Articles" ToRole="ArticleReply" />
+          <NavigationProperty Name="User" Relationship="HeylonBlogModel.FK_Articles_Users" FromRole="Articles" ToRole="Users" />
+          <NavigationProperty Name="ArticleTags" Relationship="HeylonBlogModel.FK_ArticleTag_Articles" FromRole="Articles" ToRole="ArticleTag" />
+        </EntityType>
+        <EntityType Name="ArticleTag">
+          <Key>
+            <PropertyRef Name="ArticleTagID" />
+          </Key>
+          <Property Name="ArticleTagID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" />
+          <Property Name="TagID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="HeylonBlogModel.FK_ArticleTag_Articles" FromRole="ArticleTag" ToRole="Articles" />
+          <NavigationProperty Name="Tag" Relationship="HeylonBlogModel.FK_ArticleTag_Tags" FromRole="ArticleTag" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryTitle" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CategoryDesc" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArticleCategories" Relationship="HeylonBlogModel.FK_ArticleCategory_Category" FromRole="Category" ToRole="ArticleCategory" />
+          <NavigationProperty Name="Category1" Relationship="HeylonBlogModel.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="HeylonBlogModel.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionTitle" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="SectionContent" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Type="Int32" Name="SortID" Nullable="false" />
+          <Property Type="String" Name="SectionCode" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TagTitle" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArticleTags" Relationship="HeylonBlogModel.FK_ArticleTag_Tags" FromRole="Tags" ToRole="ArticleTag" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArticleReplies" Relationship="HeylonBlogModel.FK_ArticleReply_Users" FromRole="Users" ToRole="ArticleReply" />
+          <NavigationProperty Name="Articles" Relationship="HeylonBlogModel.FK_Articles_Users" FromRole="Users" ToRole="Articles" />
+        </EntityType>
+        <Association Name="FK_ArticleCategory_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Article" Multiplicity="1" />
+          <End Role="ArticleCategory" Type="HeylonBlogModel.ArticleCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleCategory">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleCategory_Category">
+          <End Role="Category" Type="HeylonBlogModel.Category" Multiplicity="1" />
+          <End Role="ArticleCategory" Type="HeylonBlogModel.ArticleCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ArticleCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_ArticleReply1">
+          <End Role="ArticleReply" Type="HeylonBlogModel.ArticleReply" Multiplicity="1" />
+          <End Role="ArticleReply1" Type="HeylonBlogModel.ArticleReply" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleReply">
+              <PropertyRef Name="ArticleReplyID" />
+            </Principal>
+            <Dependent Role="ArticleReply1">
+              <PropertyRef Name="ArticleReplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Article" Multiplicity="1" />
+          <End Role="ArticleReply" Type="HeylonBlogModel.ArticleReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleReply">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_Users">
+          <End Role="Users" Type="HeylonBlogModel.User" Multiplicity="1" />
+          <End Role="ArticleReply" Type="HeylonBlogModel.ArticleReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ArticleReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articles_Users">
+          <End Role="Users" Type="HeylonBlogModel.User" Multiplicity="1" />
+          <End Role="Articles" Type="HeylonBlogModel.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleTag_Articles">
+          <End Role="Articles" Type="HeylonBlogModel.Article" Multiplicity="1" />
+          <End Role="ArticleTag" Type="HeylonBlogModel.ArticleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="ArticleTag">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleTag_Tags">
+          <End Role="Tags" Type="HeylonBlogModel.Tag" Multiplicity="1" />
+          <End Role="ArticleTag" Type="HeylonBlogModel.ArticleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="ArticleTag">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Category">
+          <End Role="Category" Type="HeylonBlogModel.Category" Multiplicity="1" />
+          <End Role="Category1" Type="HeylonBlogModel.Category" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleReply_ArticleReply11">
+          <End Type="HeylonBlogModel.ArticleReply" Role="ArticleReply" Multiplicity="1" />
+          <End Type="HeylonBlogModel.ArticleReply" Role="ArticleReply1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleReply">
+              <PropertyRef Name="ArticleReplyID" />
+            </Principal>
+            <Dependent Role="ArticleReply1">
+              <PropertyRef Name="ToReplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HeylonBlogModelStoreContainer" CdmEntityContainer="HeylonBlogEntities">
+          <EntitySetMapping Name="ArticleCategories">
+            <EntityTypeMapping TypeName="HeylonBlogModel.ArticleCategory">
+              <MappingFragment StoreEntitySet="ArticleCategory">
+                <ScalarProperty Name="ArticleCateGoryID" ColumnName="ArticleCateGoryID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleReplies">
+            <EntityTypeMapping TypeName="HeylonBlogModel.ArticleReply">
+              <MappingFragment StoreEntitySet="ArticleReply">
+                <ScalarProperty Name="ArticleReplyID" ColumnName="ArticleReplyID" />
+                <ScalarProperty Name="ReplyContent" ColumnName="ReplyContent" />
+                <ScalarProperty Name="ReplyUserName" ColumnName="ReplyUserName" />
+                <ScalarProperty Name="ReplyUserEmail" ColumnName="ReplyUserEmail" />
+                <ScalarProperty Name="ReplyTime" ColumnName="ReplyTime" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ToReplyID" ColumnName="ToReplyID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="HeylonBlogModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
+                <ScalarProperty Name="ArticleContent" ColumnName="ArticleContent" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ReadNum" ColumnName="ReadNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleTags">
+            <EntityTypeMapping TypeName="HeylonBlogModel.ArticleTag">
+              <MappingFragment StoreEntitySet="ArticleTag">
+                <ScalarProperty Name="ArticleTagID" ColumnName="ArticleTagID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="HeylonBlogModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
+                <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="HeylonBlogModel.Section">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="SectionCode" ColumnName="SectionCode" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="SectionTitle" ColumnName="SectionTitle" />
+                <ScalarProperty Name="SectionContent" ColumnName="SectionContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="HeylonBlogModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="TagTitle" ColumnName="TagTitle" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HeylonBlogModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Heylon Blog</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @* @Scripts.Render("~/Script/jquery-1.7.1.min.js")*@
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Script/bootstrap.min.js")
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/bootstrap-responsive.min.css")
+    @Styles.Render("~/Content/Site.css")
+
+
+    @Scripts.Render("~/Scripts/jquery.jBox.min-2.3.min.js")
+    @Scripts.Render("~/Scripts/jquery.jBox-zh-CN.js")
+    @Styles.Render("~/Content/jbox.css")
+
+    @Scripts.Render("~/Scripts/HeylonBlog.js")
+
+
+
+</head>
+<body>
+
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Heylon Blog</a>
+                <div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        @Html.Partial("_LoginPartial")
+                        
+                    </p>
+                    <ul class="nav">
+                        <li>@Html.ActionLink("首页", "Index", "Home", new { }, "")</li>
+                        <li>@Html.ActionLink("关于我们", "About", "Home", new { }, "")</li>
+                        <li>@Html.ActionLink("联系我们", "Contact", "Home", new { }, "")</li>
+                        <li>@Html.ActionLink("我的相册", "photo", "Home", new{ }, "")</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                 @Html.Action("LeftMenu","Base")
+                @*@Html.Partial("_LeftMenu")*@
+            </div>
+
+
+            <div class="span9">
+                @RenderSection("featured", required: false)
+                @RenderBody()
+            </div>
+        </div>
+
+
+        <hr />
+        <footer>
+            <p>
+                HeylonBlog
+            </p>
+        </footer>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,185 @@
+﻿@model HeylonBlog.Models.BlogShow
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BlogShow">
+    <div class="ArticleTitle">
+        @Model.ArticleTitle
+        <input type="hidden" id="ArticleID" value="@Model.ArticleID" />
+    </div>
+
+    <div class="ArticleContent">
+        @Model.ArticleContent
+    </div>
+    <div class="Tags">
+        标签:@foreach (var item in Model.Tags)
+           {
+            <a href="#"><span class="label">@item.Tag.TagTitle</span></a> <text>&nbsp;&nbsp;&nbsp;</text>
+           }
+
+    </div>
+
+    <div class="Category">
+        分类:@foreach (var item in Model.Category)
+           {
+            <a href="#"><span class="label label-info">@item.Category.CategoryTitle</span></a> <text>&nbsp;&nbsp;&nbsp;</text>
+           }
+
+
+    <div class="AricleInfo">
+        posted @@ @Model.CreateDate @Model.AuthorName 阅读(@Model.ReadNum) 评论(@Model.Replys.Count) <a href="#">编辑</a>
+    </div>
+</div>
+
+<div id="ReplyBlock">
+    @{int row = 1;}
+    @foreach (var item in @Model.Replys)
+    {
+        <div class="Reply">
+
+            <div class="Title"><span class="badge">@row</span> 楼  <span class="info"> @@@item.ReplyTime.ToString("yyyy年MM月dd日 HH点mm分ss秒")  <span class="label label-info">@item.ReplyUserName</span></span></div>
+
+
+            <div class="Content">
+                @if (item.ToReplyID != 0)
+                {
+                    <text>@@</text> <a href="#">@item.ToReply.ReplyUserName</a><text>: </text>
+                }
+                <p>
+                    @item.ReplyContent
+                </p>
+            </div>
+
+            <div class="Control"><a href="#reply" class="btn btn-small" onclick="ReplyTo(@item.ArticleReplyID)">回复</a></div>
+            @{row++;}
+           
+        </div>
+    }
+    <div class="ReplyLoading" id="loading"></div>
+</div>
+
+
+<div class="Comment">
+    <div class="Title" id="ReplyTilte">
+        <i class="icon-pencil"></i>发表评论：
+    </div>
+
+    <form id="ReplyForm" method="post">
+        <div class="Content">
+            <input type="hidden" id="ToReplyID" value="0" />
+            <textarea class="ReplyContentBox" required id="ReplyContent" placeholder="输入您的评论.."></textarea>
+        </div>
+
+        <div class="UserInfo">
+            昵称：<input type="text" required id="UserName" placeholder="请输入您的昵称" />
+            Email：<input type="email" required id="UserEmail" placeholder="请输入您的Email地址" />
+        </div>
+        <div class="Control">
+            <input type="button" class="btn btn-small" id="ReplySubmit" onclick="SubmitReply();" value="提交" />
+        </div>
+        <a name="reply"></a>
+    </form>
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        function checkSubmit() {
+            if ($("#ReplyContent").val().trim() == "") {
+                $.jBox.tip("请输入评论内容！","error");
+                return true;
+            }
+            if ($("#UserName").val().trim()=="") {
+                $.jBox.tip("请输入您的用户名！","error");
+                return true;
+            }
+            if ($("#UserEmail").val().trim() == "") {
+                $.jBox.tip("请输入您的邮箱！","error");
+                return true;
+            }
+            return false;
+        }
+
+        function SubmitReply() {
+            if (checkSubmit()) {
+                return false;
+            }
+
+            $.jBox.tip("提交评论...", 'loading');
+            var ToReplyID = $("#ToReplyID").val();
+            var ReplyContent = $("#ReplyContent").val();
+            var ReplyUserName = $("#UserName").val();
+            var ReplyUserEmail = $("#UserEmail").val();
+            var ArticleID = $("#ArticleID").val();
+            $("#ReplySubmit").attr("disabled", "disabled");
+            $("#ReplySubmit").addClass("disabled");
+
+            $.ajax({
+                url: "../../Blog/SubmitReply",
+                cache: false,
+                dataType: "json",
+                type: "POST",
+                data: {
+                    "ToReplyID": ToReplyID,
+                    "ReplyContent": ReplyContent,
+                    "ReplyUserName": ReplyUserName,
+                    "ReplyUserEmail": ReplyUserEmail,
+                    "ArticleID": ArticleID
+                },
+                beforeSend: function (XMLHttpRequest) {
+                    //$("#loading").html("<img src='/Content/img/loading.gif' />");
+                    $.jBox.tip("提交评论...", 'loading');
+                },
+                success: function (content) {
+                    if (content > 0) {
+                        $.jBox.tip('评论提交成功。', 'success');
+                        $("#ReplySubmit").removeAttr("disabled");
+                        $("#ReplySubmit").removeClass("disabled");
+                        AddComment(ToReplyID, ReplyContent, ReplyUserName, ReplyUserEmail);
+                        ClearReply();
+                    }
+                    else {
+                        $.jBox.tip('评论提交失败。', 'error');
+                        $("#ReplySubmit").removeAttr("disabled");
+                        $("#ReplySubmit").removeClass("disabled");
+                        
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.statusText + "................" + textStatus + "..................." + errorThrown);
+                }
+            });
+
+        }
+        function AddComment(ToReplyID, ReplyContent, ReplyUserName, ReplyUserEmail) {
+            var innerhtml = "<div class=\"Reply\"><div class=\"Title\"><span class=\"badge\">x</span> 楼 刚刚 " + ReplyUserName + "</div>"
+            innerhtml += "<div class=\"Content\"><p>" + ReplyContent + "</p></div>";
+            innerhtml += "<div class=\"Control\"><a href=\"#reply\" class=\"btn btn-small disabled\" disabled >回复</a></div></div>";
+            $("#ReplyBlock").append(innerhtml);
+
+        }
+        function ClearReply() {
+            $("#ReplyContent").val("");
+            $("#UserName").val("");
+            $("#UserEmail").val("");
+            $("#ToReplyID").val("0");
+        }
+
+        function ReplyTo(ReplyID) {
+            $("#ToReplyID").val(ReplyID);
+            //$("#ReplyToBlcok").fadein();
+        }
+        function CloseReplyTo() {
+            //$("#ToReplyID").val("0");
+            //$("#ReplyToBlcok").fadeOut();
+        }
+    </script>
+
+
+    }
+

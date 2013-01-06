@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HeylonBlog.Models.IndexBlogs>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section featured {
+    <section class="featured">
+       
+    </section>
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="Article-unit">
+    <div class="Article-Title">
+        @if (item.IsTop == 1)
+        {
+            <span class="label label-important"> 置顶 </span>
+        } 
+        &nbsp;
+        @Html.ActionLink(item.ArticleTitle, "Show", "Blog", new { id = item.ArticleID }, new { })
+    </div>
+    <div class="Article-Brief">
+        @item.ArticleBrief
+    </div>
+    <div class="Article-Status">
+        posted @@ @item.CreateDate @item.AuthorName 阅读(@item.ReadNum) 评论(@item.ReplyNum) <a>编辑</a>
+    </div>
+</div>
+}
+
+
+
+
+
+
+

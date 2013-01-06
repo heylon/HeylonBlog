@@ -1,0 +1,180 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.Article-unit {
+    background-color: #DCEAF4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+    .Article-unit .Article-Title {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 15px;
+        font-size: large;
+    }
+
+    .Article-unit .Article-Brief {
+        padding-left: 20px;
+        padding-bottom: 10px;
+    }
+
+    .Article-unit .Article-Status {
+        padding-right: 20px;
+        padding-bottom: 10px;
+        text-align: right;
+        font-size: small;
+        color: gray;
+    }
+
+.LeftBlock {
+    margin-top: 10px;
+    background-color: #DCEAF4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+    .LeftBlock .BlockTitle {
+        padding-left: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        font-size: medium;
+        font-weight: bold;
+        border-bottom: 1px dashed white;
+    }
+
+    .LeftBlock .BlockContent {
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+    }
+
+.BlogShow {
+    background-color: #DCEAF4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+    .BlogShow .ArticleTitle {
+        padding-left: 10px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        font-size: x-large;
+        border-bottom: 1px dashed white;
+    }
+
+    .BlogShow .ArticleContent {
+        padding-left: 10px;
+        padding-top: 20px;
+    }
+
+    .BlogShow .AricleInfo {
+        padding-top: 10px;
+        text-align: right;
+        font-size: small;
+        color: gray;
+    }
+
+    .BlogShow .Tags {
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    .BlogShow .Category {
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+.Reply {
+    margin-top: 25px;
+    background-color: #DCEAF4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+    .Reply .Title {
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed white;
+        color: gray;
+        font-weight: bold;
+        font-size: small;
+    }
+        .Reply .Title .info {
+            float:right;
+            padding-right:10px;
+            font-size:smaller;
+        }
+
+    .Reply .Content {
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+
+    .Reply .Control {
+        text-align: right;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+
+.Comment {
+    margin-top: 25px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-right:10px;
+    /*background-color: #DCEAF4;*/
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #DDD;
+}
+    .Comment .Title {
+        border-bottom:1px dotted gray;
+        padding-top:5px;
+    }
+    .Comment .UserInfo {
+        padding-top:5px;
+    }
+
+    .Comment .Content {
+        padding-top:5px;
+    }
+    .Comment .Control {
+        padding-top:5px;
+
+    }
+    .Comment.ReplyToBlcok {
+        width:150px;
+        margin-top:5px;
+        margin-bottom:5px;
+}
+.ReplyContentBox {
+    width:520px;
+    height:100px;
+}
+
+.ReplyLoading {
+    width:100px;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+.TOP {
+      width:100px;
+      height:200px;
+}
+
