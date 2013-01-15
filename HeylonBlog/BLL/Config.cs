@@ -20,20 +20,34 @@ namespace BLL
 
             foreach (var section in list)
             {
-                string content = "<ul>";
+                string content = "";
+                int i = 1;
                 switch (section.SectionCode)
                 {
 
                     case "NewArticle":
+
+                        content += "<ul>";
                         foreach (var article in dal.GetArticleForNew(10))
                         {
-                            content += "<li><a href=\"#\">" + article.ArticleTitle + "</a></li>";
+                            content += "<li><a href=\"/Blog/Show/" + article.ArticleID + "\">" + (i++) + ". " + article.ArticleTitle + " (" + article.CreateDate.ToString("yyyy年MM月dd日") + ")" + "</a></li>";
                         }
                         content += "</ul>";
                         section.SectionContent = content;
                         break;
                     case "TopArticle":
-                        section.SectionContent = "this is Top Article";
+                        content += "<ul>";
+                        foreach (var article in dal.GetTopArticle(10))
+                        {
+                            content += "<li><a href=\"/Blog/Show/" + article.ArticleID + "\" >" + (i++) + ". " + article.ArticleTitle + " (" + article.ReadNum + ")" + "</a></li>";
+                        }
+                        content += "</ul>";
+                        section.SectionContent = content;
+                        break;
+                    case "NewReply":
+                        content += "newReply";
+                       
+                        section.SectionContent = content;
                         break;
                     default:
 

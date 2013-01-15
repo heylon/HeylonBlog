@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using System.ComponentModel.DataAnnotations;
+
 namespace HeylonBlog.Models
 {
     public class IndexBlogs
@@ -31,6 +33,24 @@ namespace HeylonBlog.Models
         public ICollection<Model.ArticleTag> Tags { get; set; }
         public ICollection<Model.ArticleCategory> Category { get; set; }
     }
+
+    public class BlogCreate
+    {
+        [Required]
+        [Display(Name="文章标题")]
+        public string ArticleTitle { get; set; }
+        [Required]
+        [Display(Name="文章内容")]
+        public string ArticleContent { get; set; }
+        public DateTime CreateDate { get; set; }
+        [Display(Name="是否置顶")]
+        public bool IsTop { get; set; }
+        [Display(Name="排序号")]
+        public int SortID { get; set; }
+        public ICollection<Model.ArticleTag> Tags { get; set; }
+        public ICollection<Model.ArticleCategory> Category { get; set; }
+    }
+
 
     public class BlogReplys
     {

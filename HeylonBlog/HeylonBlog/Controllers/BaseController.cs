@@ -11,7 +11,7 @@ namespace HeylonBlog.Controllers
         //
         // GET: /Base/
 
-        [OutputCache(Duration = 1, VaryByParam = "none")] 
+        [OutputCache(Duration = 1, VaryByParam = "none")]
         public PartialViewResult LeftMenu()
         {
             BLL.Config bll = new BLL.Config();
@@ -23,7 +23,20 @@ namespace HeylonBlog.Controllers
             }
             //ViewBag.LeftMenu = sectionList;
 
-            return PartialView("_LeftMenu",sectionList);
+            return PartialView("_LeftMenu", sectionList);
+        }
+
+        public BaseController()
+        {
+            if (Common.HttpContextHelper.GetSession<Model.User>("User") == null)
+            {
+
+            }
+            else
+            {
+                ViewBag.IndexBlogEdit = "<a>编辑</a>";
+                ViewBag.IndexBlogCreate = "<a class=\"btn btn-small\" href=\"/Blog/Create\">发表新博客</a>";
+            }
         }
 
     }

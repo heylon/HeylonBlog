@@ -27,7 +27,7 @@
         @item.ArticleBrief
     </div>
     <div class="Article-Status">
-        posted @@ @item.CreateDate @item.AuthorName 阅读(@item.ReadNum) 评论(@item.ReplyNum) <a>编辑</a>
+        posted @@ @item.CreateDate @item.AuthorName 阅读(@item.ReadNum) 评论(@item.ReplyNum) @Html.Raw(ViewBag.IndexBlogEdit)
     </div>
 </div>
 }

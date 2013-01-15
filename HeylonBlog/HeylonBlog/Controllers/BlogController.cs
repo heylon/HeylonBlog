@@ -18,6 +18,17 @@ namespace HeylonBlog.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public void Create(Models.BlogCreate article)
+        {
+
+        }
+
         public ActionResult Show(int id)
         {
             BLL.Article bll = new BLL.Article();

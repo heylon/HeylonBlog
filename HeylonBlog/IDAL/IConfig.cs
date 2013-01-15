@@ -11,5 +11,6 @@ namespace IDAL
     {
         ICollection<Model.Section> GetSections();
         ICollection<Model.Article> GetArticleForNew(int num);
+        ICollection<Model.Article> GetTopArticle(int num);
     }
 }

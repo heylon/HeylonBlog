@@ -31,5 +31,17 @@ namespace DAL
                .ToList();
            return article;
        }
+
+       public ICollection<Model.Article> GetTopArticle(int num)
+       {
+           var article = blogEn.Articles
+               .Where(a => a.Active == 1)
+               .OrderByDescending(a => a.ReadNum)
+               .OrderByDescending(a => a.CreateDate)
+               .Take(num)
+               .ToList();
+           return article;
+       }
+
     }
 }

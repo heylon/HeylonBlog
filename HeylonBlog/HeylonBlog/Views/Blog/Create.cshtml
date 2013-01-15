@@ -1,0 +1,52 @@
+﻿
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="CreateArticle">
+    <div class="Title">新文章</div>
+   
+    <div class="ArticleTitle">
+        文章标题：
+        <input type="text" class="input-xxlarge" id="ArticleTitle" />
+    </div>
+    <div class="ArticleContent">
+        文章内容：
+        <textarea id="ArticleContent"></textarea>
+    </div>
+
+    <div class="ArticleCate">
+        所属分类：
+    </div>
+
+    <div class="ButtonArea">
+        <input type="button" class="btn" value="提交" onclick="SubmitMe()"  />
+    </div>
+
+</div>
+
+@section Scripts {
+  @Scripts.Render("/Scripts/editor/kindeditor.js")
+ @Scripts.Render("/Scripts/editor/lang/zh_CN.js")
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('#ArticleContent',
+             {
+                 uploadJson: '/scripts/editor/asp.net/upload_json.ashx',
+                 fileManagerJson: '/scripts/editor/asp.net/file_manager_json.ashx',
+                 allowFileManager: true
+             });
+    });
+
+
+
+
+
+    function SubmitMe() {
+        alert(editor.html());
+    }
+</script>
+}
