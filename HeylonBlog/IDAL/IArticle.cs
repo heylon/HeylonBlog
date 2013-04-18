@@ -14,6 +14,8 @@ namespace IDAL
         Model.Article GetSingle(int id);
         void Read(int id);
         int SubmitReply(Model.ArticleReply model);
-        
+
+        ICollection<Model.Category> GetCategory();
+        ICollection<Model.Tag> GetTag();
     }
 }

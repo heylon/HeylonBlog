@@ -34,6 +34,11 @@ namespace HeylonBlog.Models
         public ICollection<Model.ArticleCategory> Category { get; set; }
     }
 
+    public class BlogCreateGet
+    {
+
+    }
+
     public class BlogCreate
     {
         [Required]

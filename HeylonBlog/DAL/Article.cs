@@ -45,6 +45,16 @@ namespace DAL
             return blogEn.SaveChanges();
         }
 
+        public ICollection<Model.Category> GetCategory()
+        {
+            return blogEn.Categories.Where(c => c.Active == 1).ToList();
+        }
+
+        public ICollection<Model.Tag> GetTag()
+        {
+            return blogEn.Tags.Where(t => t.Active == 1).ToList();
+        }
+
 
 
 

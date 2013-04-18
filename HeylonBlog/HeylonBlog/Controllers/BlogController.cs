@@ -20,6 +20,12 @@ namespace HeylonBlog.Controllers
 
         public ActionResult Create()
         {
+            BLL.Article bll = new BLL.Article();
+            Models.BlogCreate blogCreate = new Models.BlogCreate();
+
+            //Models.ArticleCategory = bll.GetCategory();
+            //blogCreate.Tags = bll.GetTag();
+
             return View();
         }
 

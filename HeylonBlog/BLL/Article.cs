@@ -32,5 +32,15 @@ namespace BLL
         {
             return dal.SubmitReply(model);
         }
+
+        public ICollection<Model.Category> GetCategory()
+        {
+            return dal.GetCategory();
+        }
+
+        public ICollection<Model.Tag> GetTag()
+        {
+            return dal.GetTag();
+        }
     }
 }
